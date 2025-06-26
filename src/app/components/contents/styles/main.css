@@ -1,0 +1,15 @@
+.resizable-header {
+  resize: horizontal;
+  overflow: hidden;
+  min-width: 80px;
+  max-width: 600px;
+  white-space: nowrap;
+  position: relative;
+  user-select: none;
+  cursor: ew-resize;
+}
+
+/* make the scroll only appear on table wrapper */
+body {
+  overflow-x: hidden;
+}
