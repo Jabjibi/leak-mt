@@ -15,7 +15,10 @@ export default function LeakTable() {
   const pageSize = 10;
 
   const toSnakeCase = (str) =>
-    str.toLowerCase().replace(/[\s-]/g, "_").replace(/[^\w_]/g, "");
+    str
+      .toLowerCase()
+      .replace(/[\s-]/g, "_")
+      .replace(/[^\w_]/g, "");
 
   const normalizeKeys = (data) =>
     data.map((item) => {
@@ -66,10 +69,14 @@ export default function LeakTable() {
         method: "POST",
         body: formData,
       });
-      const result = await res.text();
-      console.log("N8N Response:", result);
+
+      const result = await res.json(); 
+
+      const normalized = normalizeKeys(result);
+      setData(normalized); 
+      setPage(1); 
     } catch (err) {
-      console.error("❌ ส่งไฟล์ไปยัง N8N ล้มเหลว:", err);
+      console.error("❌ error sent file:", err);
     } finally {
       setLoadingN8N(false);
     }

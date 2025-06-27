@@ -20,17 +20,14 @@ export default function FileUploader({
           className="border px-3 py-2 rounded"
         />
         <button
-          onClick={onLoadExcel}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-        >
-          <FiUpload /> นำเข้า
-        </button>
-        <button
-          onClick={onSendToN8N}
+          onClick={async () => {
+            await onLoadExcel(); // อ่าน Excel แล้วเซ็ตข้อมูลในตาราง
+            await onSendToN8N(); // ส่งไฟล์ไป n8n แล้วดึงผลกลับมา
+          }}
           disabled={loading}
-          className="flex items-center gap-2 bg-black hover:bg-gray-500 text-white px-4 py-2 rounded"
+          className="flex items-center gap-2 bg-black hover:bg-gray-600 text-white px-4 py-2 rounded"
         >
-          <FiRefreshCw /> ดึงจาก N8N
+          <FiUpload /> นำเข้า & ส่งไป N8N
         </button>
       </div>
     </div>

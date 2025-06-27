@@ -1,3 +1,4 @@
+import "../contents/styles/main.css"
 export default function TableView({
   data,
   page,
